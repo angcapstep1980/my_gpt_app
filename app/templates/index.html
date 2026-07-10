@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>Chat con cronologia</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+
+    <body>
+        <div class="header">
+            <h2>Chat</h2>
+            <button id="reset" onclick="resetChat()">Nuova chat</button>
+        </div>
+
+        <div id="chat"></div>
+
+        <div class="controls">
+            <textarea id="prompt" rows="2" placeholder="Scrivi un messaggio..." autofocus></textarea>
+            <button id="send" onclick="sendMessage()">Invia</button>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+        <script src="{{ url_for('static', filename='script.js') }}"></script>
+    </body>
+
+</html>

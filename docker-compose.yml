@@ -1,0 +1,29 @@
+name: my-gpt-app
+
+services:
+
+  web:
+    build: .
+    ports:
+      - "5000:5000"
+    restart: unless-stopped
+    depends_on:
+      - appdb
+    env_file:
+      - .env
+
+  appdb:
+    image: postgres:16
+    container_name: postgres-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: osda31
+      POSTGRES_PASSWORD: Password1
+      POSTGRES_DB: chat_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
