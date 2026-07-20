@@ -7,7 +7,7 @@ client = AzureOpenAI(
     azure_endpoint=os.getenv("AZURE_OPENAI_ENDPOINT")
 )
 
-def call_llm(history):
+def call_llm(history, t):
     try:
         messages = history.copy()
         # Dici al modello di usare markdown per formattare
@@ -19,7 +19,7 @@ def call_llm(history):
         response = client.chat.completions.create(
             messages=messages, # history = [{'role':'user', 'content':'...'},...]
             max_tokens=2200,
-            temperature=0.0,
+            temperature=t,
             top_p=1.0,
             model=os.getenv("AZURE_OPENAI_DEPLOYMENT")
             #, response_format={"type": "json_object"} # usalo solo se ti serve che la risposta sia in formato JSON

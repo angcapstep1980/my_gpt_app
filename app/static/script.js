@@ -2,6 +2,13 @@ const chatDiv = document.getElementById('chat');
 const promptEl = document.getElementById('prompt');
 const sendBtn = document.getElementById('send');
 
+const slider = document.getElementById("scoreSlider");
+const sliderValue = document.getElementById("sliderValue");
+
+slider.addEventListener("input", () => {
+    sliderValue.textContent = slider.value;
+});
+
 // Configura marked per usare highlight.js
 marked.setOptions({
     highlight: function(code, lang) {
@@ -46,7 +53,7 @@ async function sendMessage() {
         const res = await fetch('/api/chat', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({message})
+            body: JSON.stringify({ message, slider_value: slider.value })
         });
         const data = await res.json();
         if (data.error) {

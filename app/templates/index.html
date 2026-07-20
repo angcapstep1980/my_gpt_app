@@ -9,17 +9,30 @@
     </head>
 
     <body>
-        <div class="header">
-            <h2>Chat</h2>
-            <button id="reset" onclick="resetChat()">Nuova chat</button>
-        </div>
-
-        <div id="chat"></div>
-
-        <div class="controls">
-            <textarea id="prompt" rows="2" placeholder="Scrivi un messaggio..." autofocus></textarea>
-            <button id="send" onclick="sendMessage()">Invia</button>
-        </div>
+        <div class="layout">
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <h3>Temperatura</h3>
+                <div class="slider-container">
+                    <label for="scoreSlider">
+                        <span id="sliderValue">0.0</span>
+                    </label>
+                    <input type="range" id="scoreSlider" min="0" max="1" step="0.1"  value="0" >
+                </div>
+            </aside>
+            <!-- Contenuto principale -->
+            <main class="main-content">  
+                <div class="header">
+                    <h2>Chat</h2>
+                    <button id="reset" onclick="resetChat()">Nuova chat</button>
+                </div>
+                <div id="chat"></div>
+                <div class="controls">
+                    <textarea id="prompt" rows="2" placeholder="Scrivi un messaggio..." autofocus></textarea>
+                    <button id="send" onclick="sendMessage()">Invia</button>
+                </div>
+            </main>
+        </div>        
 
         <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>

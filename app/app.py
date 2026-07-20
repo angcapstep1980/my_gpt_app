@@ -50,13 +50,14 @@ def set_session_cookie(response):
 @app.route('/api/chat', methods=['POST'])
 def chat():
     user_message = request.json.get('message', '').strip()
+    temperature = float(request.json.get('slider_value', '0.0').strip())
     if not user_message:
         return jsonify({'error': 'Messaggio vuoto'}), 400
     session_id = g.session_id
     db.session.add(Message(session_id=session_id, role='user', content=user_message))
     history = Message.query.filter_by(session_id=session_id).order_by(Message.timestamp).all()
     history_list = [{'role': m.role, 'content': m.content} for m in history]
-    assistant_reply = call_llm(history_list)
+    assistant_reply = call_llm(history_list, temperature)
     db.session.add(Message(session_id=session_id, role='assistant', content=assistant_reply))
     db.session.commit()
     return jsonify({'reply': assistant_reply})
