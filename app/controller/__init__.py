@@ -28,5 +28,4 @@ def call_llm(history, t):
         return response.choices[0].message.content
 
     except Exception as e:
-        print(f"Errore Azure OpenAI: {e}")
-        return "Scusa, c'è stato un errore nel contattare il modello."
+        return f"Scusa, c'è stato un errore nel contattare il modello: {e}"
